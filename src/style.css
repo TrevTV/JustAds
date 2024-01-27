@@ -1,10 +1,10 @@
 :root {
-    --header-color: #bf2655;
-    --header-color-hover: #e74c3c;
-    --header-color-active: #ffa59b;
-    --text-color: #db3f87;
-    --text-color-hover: #ff6eb2;
-    --text-color-active: #ff9fcc;
+  --header-color: #bf2655;
+  --header-color-hover: #e74c3c;
+  --header-color-active: #ffa59b;
+  --text-color: #db3f87;
+  --text-color-hover: #ff6eb2;
+  --text-color-active: #ff9fcc;
 }
 
 body {
@@ -12,11 +12,14 @@ body {
   background-color: black;
   overflow: hidden;
 
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 600;
   font-size: 1.2rem;
 
   color: var(--text-color);
+
+  height: 98vh;
+  padding: 20px;
 }
 
 body::before {
@@ -38,30 +41,101 @@ body::before {
 }
 
 p {
-    text-shadow: currentColor 0px 0px 10px;
+  text-shadow: currentColor 0px 0px 10px;
 }
 
 p:hover {
-    color: var(--text-color-hover);
-    text-shadow: currentColor 0px 0px 20px;
+  color: var(--text-color-hover);
+  text-shadow: currentColor 0px 0px 20px;
 }
 
 p:active {
-    color: var(--text-color-active);
-    text-shadow: currentColor 0px 0px 30px;
+  color: var(--text-color-active);
+  text-shadow: currentColor 0px 0px 30px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: var(--header-color);
-    text-shadow: currentColor 0px 0px 10px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--header-color);
+  text-shadow: currentColor 0px 0px 10px;
 }
 
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-    color: var(--header-color-hover);
-    text-shadow: currentColor 0px 0px 20px;
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover {
+  color: var(--header-color-hover);
+  text-shadow: currentColor 0px 0px 20px;
 }
 
-h1:active, h2:active, h3:active, h4:active, h5:active, h6:active {
-    color: var(--header-color-active);
-    text-shadow: currentColor 0px 0px 30px;
+h1:active,
+h2:active,
+h3:active,
+h4:active,
+h5:active,
+h6:active {
+  color: var(--header-color-active);
+  text-shadow: currentColor 0px 0px 30px;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text-color-hover);
+  text-shadow: currentColor 0px 0px 20px;
+}
+
+a:active {
+  color: var(--text-color-active);
+  text-shadow: currentColor 0px 0px 30px;
+}
+
+/* stolen from https://github.com/govizlora/optical-breacher */
+.border {
+  border-width: 1px;
+  border-style: solid;
+  border-image-source: url(./img/app-border.svg);
+  /* The Y-coord of the top indent in the SVG is 68.5 */
+  border-image-slice: 69;
+  border-image-width: auto;
+  box-sizing: border-box;
+}
+
+.top-logo img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+  height: auto;
+
+  filter: drop-shadow(0 0 20px var(--text-color));
+
+  margin-bottom: 40px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+
+video {
+  display: block;
+  margin: 20px auto;
+  width: 75vw;
+  height: 75vh;
+  max-width: 75vw;
+  max-height: 70vh;
+  filter: drop-shadow(0 0 10px var(--text-color));
 }

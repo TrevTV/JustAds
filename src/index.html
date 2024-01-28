@@ -2,16 +2,30 @@
 <html>
   <head>
     <title>Just Ads!</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="darkreader-lock">
+    
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    
+    <!-- icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    
+    <!-- video player -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <script src="video.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+    <link rel="stylesheet" href="css/videojs-sublime-skin.css" />
+
+    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <script src="./player.js"></script>
   </head>
   <body class="border">
     <div class="top-logo">
@@ -23,8 +37,27 @@
       <a href="#">PREFERENCES</a>
     </div>
 
-    <video autoplay muted loop id="myVideo">
-      <source src="./ads/all_world_insurance/ai/vp9.webm" type="video/webm" />
-    </video>
+    <div class="video-container">
+      <video
+        class="video-js vjs-sublime-skin"
+        controls
+        autoplay
+        muted
+        loop
+        id="adPlayer"
+        data-setup='{ "controlBar": { "remainingTimeDisplay": false } }'
+        width="960px"
+        height="540px"
+      >
+        <source src="./ads/all_world_insurance/ai/vp9.webm" type="video/webm" />
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to
+          a web browser that
+          <a href="https://videojs.com/html5-video-support/" target="_blank">
+            supports HTML5 video
+          </a>
+        </p>
+      </video>
+    </div>
   </body>
 </html>

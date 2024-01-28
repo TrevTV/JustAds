@@ -20,6 +20,7 @@ body {
 
   height: 98vh;
   padding: 20px;
+  z-index: -1;
 }
 
 body::before {
@@ -30,7 +31,7 @@ body::before {
   width: 100%;
   height: 100%;
 
-  background: url("./img/wallpapers/wp1.jpg") no-repeat center center fixed;
+  background: url("../img/wallpapers/wp1.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -103,7 +104,7 @@ a:active {
 .border {
   border-width: 1px;
   border-style: solid;
-  border-image-source: url(./img/app-border.svg);
+  border-image-source: url(../img/app-border.svg);
   /* The Y-coord of the top indent in the SVG is 68.5 */
   border-image-slice: 69;
   border-image-width: auto;
@@ -130,12 +131,9 @@ a:active {
   column-gap: 10px;
 }
 
-video {
-  display: block;
-  margin: 20px auto;
-  width: 75vw;
-  height: 75vh;
-  max-width: 75vw;
-  max-height: 70vh;
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
   filter: drop-shadow(0 0 10px var(--text-color));
 }

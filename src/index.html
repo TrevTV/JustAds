@@ -26,7 +26,7 @@
     />
 
     <script src="./videojs.watermark.js"></script>
-    <script src="./player.js"></script>
+    <script src="./main.js"></script>
   </head>
   <body class="border">
     <div class="top-logo">
@@ -34,11 +34,11 @@
     </div>
 
     <div class="navbar">
-      <a href="#">LIVE</a>
-      <a href="#">PREFERENCES</a>
+      <a href="#" onclick="togglePanel(0)">LIVE</a>
+      <a href="#" onclick="togglePanel(1)">PREFERENCES</a>
     </div>
 
-    <div class="video-container">
+    <div class="video-container" id="live-panel">
       <video
         class="video-js vjs-sublime-skin"
         controls
@@ -56,6 +56,9 @@
           </a>
         </p>
       </video>
+    </div>
+
+    <div id="preferences-panel">
     </div>
   </body>
 </html>

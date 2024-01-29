@@ -137,3 +137,10 @@ a:active {
   margin: 30px auto;
   filter: drop-shadow(0 0 10px var(--text-color));
 }
+
+#preferences-panel {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}

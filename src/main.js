@@ -1,3 +1,5 @@
+/* player */
+
 const ads = [
   /* allfoods_01 */
   [
@@ -248,4 +250,29 @@ function getAdOfPrefType(sourceArr) {
   }
 
   return sourceArr;
+}
+
+/* navbar */
+
+const panels = [
+  "live-panel",
+  "preferences-panel"
+];
+
+function togglePanel(panel) {
+  for (let i = 0; i < panels.length; i++) {
+    if (i == panel) {
+      document.getElementById(panels[i]).style.display = "flex";
+    } else {
+      document.getElementById(panels[i]).style.display = "none";
+    }
+  }
+
+  let player = videojs.getPlayer("adPlayer");
+  if (panel != 0) {
+    player.pause();
+  }
+  else {
+    player.play();
+  }
 }

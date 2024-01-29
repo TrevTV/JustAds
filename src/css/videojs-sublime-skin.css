@@ -1,4 +1,4 @@
-/* https://github.com/zanechua/videojs-sublime-inspired-skin/ */
+/* modified from https://github.com/zanechua/videojs-sublime-inspired-skin/ */
 
 .video-js {
     /* The base font size controls the size of everything, not just text.
@@ -241,4 +241,18 @@
     opacity: 1;
     width: 3em;
     height: auto;
+}
+
+.vjs-watermark {
+    position: absolute;
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    margin-top: 35px;
+    z-index: 2000;
+}
+
+.vjs-watermark img {
+    max-width: 30%;
+    max-height: 30%;
 }

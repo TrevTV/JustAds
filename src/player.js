@@ -179,13 +179,26 @@ var adsSinceBumper = 0;
 var shuffledIndices = [];
 var currentAdIndex = adCount;
 
+var bugElement;
+
 videojs.hook("setup", function (player) {
   setup(player);
 });
 
 function setup(player) {
+  player.watermark({
+    file: "./img/logo/cid.png",
+    xpos: 0,
+    ypos: 0,
+    xrepeat: 0,
+    opacity: 1,
+    clickable: false,
+  });
+
+  bugElement = document.getElementsByClassName("vjs-watermark")[0];
+
   pickVideo(player);
-  player.on("ended", function () {
+  player.on("ended", () => {
     pickVideo(player);
   });
 }
@@ -193,9 +206,12 @@ function setup(player) {
 function pickVideo(player) {
   if (adsSinceBumper >= 5) {
     player.src(getAdOfPrefType(bumper));
+    bugElement.style.display = "none";
     adsSinceBumper = 0;
     return;
   }
+
+  bugElement.style.display = "flex";
 
   adsSinceBumper++;
 

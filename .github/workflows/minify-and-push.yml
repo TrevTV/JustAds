@@ -47,11 +47,11 @@ jobs:
           # Fetch the latest changes from the remote minified branch
           git fetch origin_with_token minified
 
-          # Merge changes from the remote minified branch
-          git merge origin_with_token/minified
+          # Reset the local branch to the remote branch (force push)
+          git reset --hard origin_with_token/minified
 
-          # Push the merged changes back to the remote minified branch
-          git push origin_with_token minified
+          # Push the reset branch to the remote minified branch (force push)
+          git push -f origin_with_token minified
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:

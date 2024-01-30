@@ -190,9 +190,11 @@ var adsSinceBumper = 0;
 var shuffledIndices = [];
 var currentAdIndex = adCount;
 
+var adPlayer;
 var bugElement;
 
 videojs.hook("setup", function (player) {
+  adPlayer = player;
   setup(player);
 });
 
@@ -286,11 +288,12 @@ function togglePanel(panel) {
     }
   }
 
-  let player = videojs.getPlayer("adPlayer");
+  if (adPlayer === undefined) { return; }
+
   if (panel != 0) {
-    player.pause();
+    adPlayer.pause();
   } else {
-    player.play();
+    adPlayer.play();
   }
 }
 

@@ -3,6 +3,8 @@ window.onload = function () {
   buttons.forEach((button) => {
     buttonLoad(button);
   });
+
+  setWallpapers();
    
   togglePanel(0);
 };
@@ -361,4 +363,20 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+/* wallpapers */
+
+function setWallpapers() {
+  let wallpapers = document.querySelectorAll(".wallpaper");
+  wallpapers.forEach((wallpaper) => {
+    let id = wallpaper.getAttribute("data-wallpaper");
+    wallpaper.style.backgroundImage = "url(../img/wallpapers/wp" + id + ".jpg)";
+  });
+}
+
+function toggleWallpaper(wp) {
+  let wallpaperId = wp.getAttribute("data-wallpaper");
+  var styleElem = document.head.appendChild(document.createElement("style"));
+  styleElem.innerHTML = "body:before {background-image: url(../img/wallpapers/wp" + wallpaperId + ".jpg);}";
 }

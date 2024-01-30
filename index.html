@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Just Ads!</title>
+    <meta name="darkreader-lock" />
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+    <!-- video player -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <script src="video.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/videojs-sublime-skin.css" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="./videojs.watermark.js"></script>
+    <script src="./main.js"></script>
+  </head>
+  <body class="border">
+    <div class="top-logo">
+      <img src="./img/logo/sym.png" alt="Just Ads!" />
+    </div>
+
+    <div class="navbar">
+      <a href="#" onclick="togglePanel(0)">LIVE</a>
+      <a href="#" onclick="togglePanel(1)">PREFERENCES</a>
+    </div>
+
+    <div class="video-container" id="live-panel">
+      <video
+        class="video-js vjs-sublime-skin"
+        controls
+        autoplay
+        id="adPlayer"
+        data-setup='{ "bigPlayButton": false, "controlBar": { "remainingTimeDisplay": false, "pictureInPictureToggle": false } }'
+        width="960px"
+        height="540px"
+      >
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to
+          a web browser that
+          <a href="https://videojs.com/html5-video-support/" target="_blank">
+            supports HTML5 video
+          </a>
+        </p>
+      </video>
+    </div>
+
+    <div id="preferences-panel">
+      <h6 class="text-shadow">SOME CHANGES WILL ONLY TAKE EFFECT AFTER THE CURRENT AD COMPLETES</h6>
+
+      <div
+        class="button"
+        data-cookie="useAiUpscale"
+        data-enabledtext="Use Raw Ads"
+        data-disabledtext="Use AI Upscaled Ads"
+        onclick="buttonClick(this)"
+        onload="buttonLoad(this)"
+      >
+        <svg
+          width="816"
+          height="87"
+          viewBox="0 0 816 87"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.5 43.75H9M18.5 43.75V4M18.5 43.75V83.5M592 1.5H815V71L800 86H21L18.5 83.5M592 1.5V18M592 1.5H21L18.5 4M18.5 4L16 1.5H1.5L1.5 57L4 59.5V78.5L1.5 81V86H16L18.5 83.5"
+            stroke="#FFFFFF"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+        <div class="button-text">Turn OFF</div>
+
+        <svg
+          width="184"
+          height="27"
+          viewBox="0 0 184 27"
+          fill="none"
+          class="button-toggle"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M92 1H1V26H92M92 1H183V26H92M92 1V26"
+            stroke="#FF6060"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+
+        <div class="button-toggle-item enabled"></div>
+        <div class="button-toggle-item disabled"></div>
+      </div>
+
+      <div
+        class="button"
+        data-cookie="showNetworkBug"
+        data-enabledtext="Hide Network Bug"
+        data-disabledtext="Show Network Bug"
+        onclick="buttonClick(this);"
+        onload="buttonLoad(this)"
+      >
+        <svg
+          width="816"
+          height="87"
+          viewBox="0 0 816 87"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.5 43.75H9M18.5 43.75V4M18.5 43.75V83.5M592 1.5H815V71L800 86H21L18.5 83.5M592 1.5V18M592 1.5H21L18.5 4M18.5 4L16 1.5H1.5L1.5 57L4 59.5V78.5L1.5 81V86H16L18.5 83.5"
+            stroke="#FFFFFF"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+        <div class="button-text">Turn OFF</div>
+
+        <svg
+          width="184"
+          height="27"
+          viewBox="0 0 184 27"
+          fill="none"
+          class="button-toggle"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M92 1H1V26H92M92 1H183V26H92M92 1V26"
+            stroke="#FF6060"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+
+        <div class="button-toggle-item enabled"></div>
+        <div class="button-toggle-item disabled"></div>
+      </div>
+
+      <div>
+        <h4 class="text-shadow">WALLPAPERS</h4>
+        <div class="wallpapers-box">
+          <div class="wallpaper" data-wallpaper="1" data-colors="#bf2655;#db3f87;#ff6eb2;#ff9fcc" onclick="toggleWallpaper(this)"></div>
+          <div class="wallpaper" data-wallpaper="2" data-colors="#bf2655;#db3f87;#ff6eb2;#ff9fcc" onclick="toggleWallpaper(this)"></div>
+          <div class="wallpaper" data-wallpaper="3" data-colors="#bf2655;#db3f87;#ff6eb2;#ff9fcc" onclick="toggleWallpaper(this)"></div>
+          <div class="wallpaper" data-wallpaper="4" data-colors="#bf2655;#db3f87;#ff6eb2;#ff9fcc" onclick="toggleWallpaper(this)"></div>
+          <div class="wallpaper" data-wallpaper="5" data-colors="#1ac0cc;#39d2dd;#2ad4e0;#4fecf7" onclick="toggleWallpaper(this)"></div>
+          <div class="wallpaper" data-wallpaper="6" data-colors="#a88d21;#c4a836;#d3b747;#e8cc5f" onclick="toggleWallpaper(this)"></div>
+          <div class="wallpaper" data-wallpaper="7" data-colors="#0e52a5;#3a7ac9;#5f9ce8;#80b6f7" onclick="toggleWallpaper(this)"></div>
+          <div class="wallpaper" data-wallpaper="8" data-colors="#10996b;#2cc190;#4dddad;#68edc0" onclick="toggleWallpaper(this)"></div>
+        </div>
+      </div>
+
+      <div style="width: 845px">
+        <h4 class="text-shadow">CREDITS AND LICENSES</h4>
+        <p>Ads, wallpapers, and some design elements were created by CD Projekt Red for Cyberpunk 2077</p>
+        <p>Video player is a modified <a class="text-shadow" href="https://github.com/videojs/video.js">Video.js</a>, licensed under Apache 2.0</p>
+        <p>Video player skin is a <a class="text-shadow" href="https://github.com/zanechua/videojs-sublime-inspired-skin">modified Sublime inspired skin by zanechua</a>, licensed under the MIT License</p>
+        <p>Video player watermark is done with <a class="text-shadow" href="https://github.com/xbgmsharp/videojs-watermark">videojs-watermark by xbgmsharp</a>, licensed under GPL-3.0</p>
+        <p>Ad upscaling was done by <a class="text-shadow" href="https://topazlabs.com/topaz-video-ai">Topaz Video AI</a></p>
+        <p><a class="text-shadow" href="https://ko-fi.com/hgyi56">hgyi56</a> assisted me in finding the voice lines for the ads that required them</p>
+        <p>The outer border was taken from <a class="text-shadow" href="https://github.com/govizlora/optical-breacher">Optical Breacher by govizlora</a></p>
+
+        <p>See <a class="text-shadow" href="./LICENSES.txt">LICENSES.txt</a> for full licenses</p>
+      </div>
+
+      <p>A product of <a class="text-shadow" href="https://trev.app">trev.app</a></p>
+    </div>
+  </body>
+</html>

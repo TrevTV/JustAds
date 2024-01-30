@@ -1,4 +1,4 @@
-name: Minify and Push
+name: Minify and Deploy
 
 on:
   push:
@@ -25,13 +25,13 @@ jobs:
     - name: Minify HTML, JS, and CSS
       run: |
         # Minify HTML files
-        find . -name '*.html' -exec html-minifier --collapse-whitespace --minify-css --minify-js --output '{}' '{}' \;
+        find ./src -name '*.html' -exec html-minifier --collapse-whitespace --minify-css --minify-js --output '{}' '{}' \;
 
         # Minify JS files
-        find . -name '*.js' -exec terser --compress --mangle --output '{}' '{}' \;
+        find ./src -name '*.js' -exec terser --compress --mangle --output '{}' '{}' \;
 
         # Minify CSS files
-        find . -name '*.css' -exec cleancss --output '{}' '{}' \;
+        find ./src -name '*.css' -exec cleancss --output '{}' '{}' \;
 
     - name: Commit and push minified files
       run: |
@@ -44,3 +44,9 @@ jobs:
         # Set up Git credentials using the GitHub token
         git remote add origin_with_token https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/${{ github.repository }}
         git push --set-upstream origin_with_token minified
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: minified
+        folder: ./src

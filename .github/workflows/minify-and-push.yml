@@ -1,0 +1,43 @@
+name: Minify and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: |
+        npm install -g html-minifier terser clean-css-cli
+
+    - name: Minify HTML, JS, and CSS
+      run: |
+        # Minify HTML files
+        find . -name '*.html' -exec html-minifier --collapse-whitespace --minify-css --minify-js --output '{}' '{}' \;
+
+        # Minify JS files
+        find . -name '*.js' -exec terser --compress --mangle --output '{}' '{}' \;
+
+        # Minify CSS files
+        find . -name '*.css' -exec cleancss --output '{}' '{}' \;
+
+    - name: Commit and push minified files
+      run: |
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git checkout -b minified
+        git add .
+        git commit -m "Minify files"
+        git push origin minified

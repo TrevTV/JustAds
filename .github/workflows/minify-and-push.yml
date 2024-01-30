@@ -40,4 +40,7 @@ jobs:
         git checkout -b minified
         git add .
         git commit -m "Minify files"
-        git push origin minified
+
+        # Set up Git credentials using the GitHub token
+        git remote add origin_with_token https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/${{ github.repository }}
+        git push --set-upstream origin_with_token minified

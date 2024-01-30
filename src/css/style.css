@@ -67,17 +67,12 @@ a:active {
 .border {
   border-width: 1px;
   border-style: solid;
-  border-image-source: url(../img/app-border.svg);
+  border-image-source: url("../img/app-border-1.svg");
   /* The Y-coord of the top indent in the SVG is 68.5 */
   border-image-slice: 69;
   border-image-width: auto;
   box-sizing: border-box;
 }
-
-.border svg path {
-  stroke: var(--text-color);
-}
-
 
 .top-logo img {
   display: block;

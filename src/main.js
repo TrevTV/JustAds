@@ -367,16 +367,44 @@ function getCookie(cname) {
 
 /* wallpapers */
 
+const wpCookie = "wallpaper";
+
 function setWallpapers() {
+  
+  let cookieVal = getCookie(wpCookie);
+
+  if (cookieVal === "") {
+    setCookie(wpCookie, 1);
+    cookieVal = getCookie(wpCookie);
+  }
+
   let wallpapers = document.querySelectorAll(".wallpaper");
   wallpapers.forEach((wallpaper) => {
     let id = wallpaper.getAttribute("data-wallpaper");
     wallpaper.style.backgroundImage = "url(../img/wallpapers/wp" + id + ".jpg)";
   });
+
+  toggleWallpaper(wallpapers[cookieVal - 1]);
 }
 
 function toggleWallpaper(wp) {
   let wallpaperId = wp.getAttribute("data-wallpaper");
   var styleElem = document.head.appendChild(document.createElement("style"));
   styleElem.innerHTML = "body:before {background-image: url(../img/wallpapers/wp" + wallpaperId + ".jpg);}";
+
+  let colors = wp.getAttribute("data-colors").split(";");
+  
+  document.documentElement.style.setProperty('--header-color', colors[0]);
+  document.documentElement.style.setProperty('--text-color', colors[1]);
+  document.documentElement.style.setProperty('--text-color-hover', colors[2]);
+  document.documentElement.style.setProperty('--text-color-active', colors[3]);
+
+  if (wallpaperId >= 1 && wallpaperId <= 4) {
+    document.body.style.borderImageSource = 'url("../img/app-border-1.svg")';
+  }
+  else {
+    document.body.style.borderImageSource = 'url("../img/app-border-' + wallpaperId + '.svg")';
+  }
+
+  setCookie(wpCookie, wallpaperId);
 }

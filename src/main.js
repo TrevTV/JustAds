@@ -1,3 +1,12 @@
+window.onload = function () {
+  let buttons = document.querySelectorAll(".button");
+  buttons.forEach((button) => {
+    buttonLoad(button);
+  });
+   
+  togglePanel(0);
+};
+
 /* player */
 
 const ads = [
@@ -208,12 +217,12 @@ function setup(player) {
 function pickVideo(player) {
   if (adsSinceBumper >= 5) {
     player.src(getAdOfPrefType(bumper));
-    bugElement.style.display = "none";
+    toggleNetworkBug(false);
     adsSinceBumper = 0;
     return;
   }
 
-  bugElement.style.display = "flex";
+  toggleNetworkBug(true);
 
   adsSinceBumper++;
 
@@ -228,6 +237,19 @@ function pickVideo(player) {
   currentAdIndex++;
 }
 
+function toggleNetworkBug(enable) {
+  if (getCookie("showNetworkBug") !== "true") {
+    bugElement.style.display = "none";
+    return;
+  }
+
+  if (enable) {
+    bugElement.style.display = "flex";
+  } else {
+    bugElement.style.display = "none";
+  }
+}
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -237,8 +259,7 @@ function shuffleArray(array) {
 }
 
 function getAdOfPrefType(sourceArr) {
-  // TODO: ai vs raw option
-  let ai = true;
+  let ai = getCookie("useAiUpscale") === "true";
 
   let adType = "raw";
   if (ai) {
@@ -254,10 +275,7 @@ function getAdOfPrefType(sourceArr) {
 
 /* navbar */
 
-const panels = [
-  "live-panel",
-  "preferences-panel"
-];
+const panels = ["live-panel", "preferences-panel"];
 
 function togglePanel(panel) {
   for (let i = 0; i < panels.length; i++) {
@@ -271,8 +289,73 @@ function togglePanel(panel) {
   let player = videojs.getPlayer("adPlayer");
   if (panel != 0) {
     player.pause();
-  }
-  else {
+  } else {
     player.play();
   }
+}
+
+/* buttons and cookies */
+
+function buttonLoad(button) {
+  let cookie = button.getAttribute("data-cookie");
+  let cookieVal = getCookie(cookie);
+
+  if (cookieVal === "") {
+    setCookie(cookie, true);
+    cookieVal = getCookie(cookie);
+  }
+
+  let active = cookieVal === "true";
+
+  buttonToggle(button, active);
+}
+
+function buttonClick(button) {
+  let cookie = button.getAttribute("data-cookie");
+  let active = getCookie(cookie) === "true";
+  active = !active;
+  setCookie(cookie, active);
+
+  buttonToggle(button, active);
+}
+
+function buttonToggle(button, active) {
+  let enableToggle = button.querySelector(".button-toggle-item.enabled");
+  let disableToggle = button.querySelector(".button-toggle-item.disabled");
+  let textElement = button.querySelector(".button-text");
+  let text = active
+    ? button.getAttribute("data-enabledtext")
+    : button.getAttribute("data-disabledtext");
+
+  textElement.innerHTML = text;
+  if (active === true) {
+    disableToggle.style.display = "none";
+    enableToggle.style.display = "block";
+  } else {
+    disableToggle.style.display = "block";
+    enableToggle.style.display = "none";
+  }
+}
+
+function setCookie(cname, cvalue) {
+  let date = new Date(Date.now() + 1.57788e10);
+  date = date.toUTCString();
+  document.cookie =
+    cname + "=" + cvalue + ";SameSite=None;Secure;Expires=" + date;
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }

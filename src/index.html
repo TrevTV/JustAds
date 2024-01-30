@@ -2,19 +2,19 @@
 <html>
   <head>
     <title>Just Ads!</title>
-    <meta name="darkreader-lock">
-    
+    <meta name="darkreader-lock" />
+
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    
+
     <!-- icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    
+
     <!-- video player -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <script src="video.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/videojs-sublime-skin.css" />
 
     <!-- fonts -->
@@ -59,6 +59,99 @@
     </div>
 
     <div id="preferences-panel">
+      <h6 class="text-shadow">SOME CHANGES WILL ONLY TAKE EFFECT AFTER THE CURRENT AD COMPLETES</h6>
+
+      <div
+        class="button"
+        data-cookie="useAiUpscale"
+        data-enabledtext="Use Raw Ads"
+        data-disabledtext="Use AI Upscaled Ads"
+        onclick="buttonClick(this)"
+        onload="buttonLoad(this)"
+      >
+        <svg
+          width="816"
+          height="87"
+          viewBox="0 0 816 87"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.5 43.75H9M18.5 43.75V4M18.5 43.75V83.5M592 1.5H815V71L800 86H21L18.5 83.5M592 1.5V18M592 1.5H21L18.5 4M18.5 4L16 1.5H1.5L1.5 57L4 59.5V78.5L1.5 81V86H16L18.5 83.5"
+            stroke="#FFFFFF"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+        <div class="button-text">Turn OFF</div>
+
+        <svg
+          width="184"
+          height="27"
+          viewBox="0 0 184 27"
+          fill="none"
+          class="button-toggle"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M92 1H1V26H92M92 1H183V26H92M92 1V26"
+            stroke="#FF6060"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+
+        <div class="button-toggle-item enabled"></div>
+        <div class="button-toggle-item disabled"></div>
+      </div>
+
+      <div
+        class="button"
+        data-cookie="showNetworkBug"
+        data-enabledtext="Hide Network Bug"
+        data-disabledtext="Show Network Bug"
+        onclick="buttonClick(this);"
+        onload="buttonLoad(this)"
+      >
+        <svg
+          width="816"
+          height="87"
+          viewBox="0 0 816 87"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.5 43.75H9M18.5 43.75V4M18.5 43.75V83.5M592 1.5H815V71L800 86H21L18.5 83.5M592 1.5V18M592 1.5H21L18.5 4M18.5 4L16 1.5H1.5L1.5 57L4 59.5V78.5L1.5 81V86H16L18.5 83.5"
+            stroke="#FFFFFF"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+        <div class="button-text">Turn OFF</div>
+
+        <svg
+          width="184"
+          height="27"
+          viewBox="0 0 184 27"
+          fill="none"
+          class="button-toggle"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M92 1H1V26H92M92 1H183V26H92M92 1V26"
+            stroke="#FF6060"
+            stroke-opacity="1"
+            stroke-width="2"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+
+        <div class="button-toggle-item enabled"></div>
+        <div class="button-toggle-item disabled"></div>
+      </div>
     </div>
   </body>
 </html>

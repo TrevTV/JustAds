@@ -41,17 +41,27 @@ body::before {
   z-index: -1;
 }
 
-p {
+.text-shadow {
   text-shadow: currentColor 0px 0px 10px;
 }
 
-p:hover {
+.hover-click-effect:hover {
   color: var(--text-color-hover);
   text-shadow: currentColor 0px 0px 20px;
 }
 
-p:active {
+.hover-click-effect:active {
   color: var(--text-color-active);
+  text-shadow: currentColor 0px 0px 30px;
+}
+
+.header-hover-click-effect:hover {
+  color: var(--header-color-hover);
+  text-shadow: currentColor 0px 0px 20px;
+}
+
+.header-hover-click-effect:active {
+  color: var(--header-color-active);
   text-shadow: currentColor 0px 0px 30px;
 }
 
@@ -62,27 +72,6 @@ h4,
 h5,
 h6 {
   color: var(--header-color);
-  text-shadow: currentColor 0px 0px 10px;
-}
-
-h1:hover,
-h2:hover,
-h3:hover,
-h4:hover,
-h5:hover,
-h6:hover {
-  color: var(--header-color-hover);
-  text-shadow: currentColor 0px 0px 20px;
-}
-
-h1:active,
-h2:active,
-h3:active,
-h4:active,
-h5:active,
-h6:active {
-  color: var(--header-color-active);
-  text-shadow: currentColor 0px 0px 30px;
 }
 
 a {
@@ -141,6 +130,63 @@ a:active {
 #preferences-panel {
   display: flex;
   justify-content: center;
-  text-align: center;
   flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  gap: 20px;
+}
+
+/* button stuff */
+
+.button {
+  position: relative;
+  display: inline-block;
+  width: 816px;
+
+  /* this is basically just for stylistic purposes */
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 10px;
+  padding-left: 38px;
+  font-size: 34px;
+  color: var(--text-color);
+}
+
+.button-toggle {
+  position: absolute;
+  top: 52px;
+  right: 28px;
+}
+
+.button-toggle-item {
+  width: 85px;
+  height: 19px;
+  position: absolute;
+  top: 56px;
+  background-color: var(--text-color);
+}
+
+.button-toggle-item.enabled {
+  right: 32px;
+}
+
+.button-toggle-item.disabled {
+  right: 123px;
+}
+
+.button svg path {
+  stroke: var(--text-color);
 }

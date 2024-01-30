@@ -10,43 +10,50 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '14'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14"
 
-    - name: Install dependencies
-      run: |
-        npm install -g html-minifier terser clean-css-cli
+      - name: Install dependencies
+        run: |
+          npm install -g html-minifier terser clean-css-cli
 
-    - name: Minify HTML, JS, and CSS
-      run: |
-        # Minify HTML files
-        find ./src -name '*.html' -exec html-minifier --collapse-whitespace --minify-css --minify-js --output '{}' '{}' \;
+      - name: Minify HTML, JS, and CSS
+        run: |
+          # Minify HTML files
+          find ./src -name '*.html' -exec html-minifier --collapse-whitespace --minify-css --minify-js --output '{}' '{}' \;
 
-        # Minify JS files
-        find ./src -name '*.js' -exec terser --compress --mangle --output '{}' '{}' \;
+          # Minify JS files
+          find ./src -name '*.js' -exec terser --compress --mangle --output '{}' '{}' \;
 
-        # Minify CSS files
-        find ./src -name '*.css' -exec cleancss --output '{}' '{}' \;
+          # Minify CSS files
+          find ./src -name '*.css' -exec cleancss --output '{}' '{}' \;
 
-    - name: Commit and push minified files
-      run: |
-        git config user.name "${{ github.actor }}"
-        git config user.email "${{ github.actor }}@users.noreply.github.com"
-        git checkout -b minified
-        git add .
-        git commit -m "Minify files"
+      - name: Commit and push minified files
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git checkout -b minified
+          git add .
+          git commit -m "Minify files"
 
-        # Set up Git credentials using the GitHub token
-        git remote add origin_with_token https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/${{ github.repository }}
-        git push --set-upstream origin_with_token minified
+          # Set up Git credentials using the GitHub token
+          git remote add origin_with_token https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/${{ github.repository }}
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: minified
-        folder: ./src
+          # Fetch the latest changes from the remote minified branch
+          git fetch origin_with_token minified
+
+          # Merge changes from the remote minified branch
+          git merge origin_with_token/minified
+
+          # Push the merged changes back to the remote minified branch
+          git push origin_with_token minified
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: minified
+          folder: ./src

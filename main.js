@@ -212,6 +212,15 @@ function setup(player) {
 
   bugElement = document.getElementsByClassName("vjs-watermark")[0];
 
+  player.on("play", () => {
+    // once we start playing, the big button is useless
+    // it's basically just used as an indicator when autoplay is blocked
+    let buttons = document.getElementsByClassName("vjs-big-play-button");
+    if (buttons.length > 0) {
+      buttons[0].remove();
+    }
+  });
+
   pickVideo(player);
   player.on("ended", () => {
     pickVideo(player);

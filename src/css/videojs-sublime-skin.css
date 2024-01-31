@@ -40,8 +40,7 @@
 .video-js:hover .vjs-big-play-button,
 .video-js .vjs-big-play-button:focus {
   border-color: #fff;
-  background-color: var(--header-color);
-  background-color: rgba(219, 63, 135, 0.5);
+  background-color: color-mix(in srgb, var(--header-color), transparent 50%);
 }
 
 /* The default color of control backgrounds is mostly black but with a little
